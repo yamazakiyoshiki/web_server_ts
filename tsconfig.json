@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // コンパイル後のJavaScriptのECMAScriptバージョン
+    "module": "commonjs", // モジュールシステム
+    "outDir": "./dist", // 出力ディレクトリを指定
+    "strict": true, // 厳格な型チェック
+    "esModuleInterop": true, // default importをJSのモジュールに対応させる
+    "skipLibCheck": true, // ライブラリの.d.tsファイルの型チェックをスキップ
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/**/*" // コンパイルするTypeScriptファイルが置かれているディレクトリ
+  ],
+  "exclude": [
+    "node_modules", // 除外するディレクトリ
+    "**/*.spec.ts" // 除外するファイルパターン
+  ]
+}
