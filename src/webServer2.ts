@@ -18,44 +18,48 @@ http
       !fs.existsSync(`.${requestFile}`) ||
       fs.statSync(`.${requestFile}`).isDirectory()
     ) {
-      const requestOptions = {
-        method: method,
-        path: path,
-        headers: request.headers,
-      };
+      // const requestOptions = {
+      //   method: method,
+      //   path: path,
+      //   headers: request.headers,
+      // };
 
-      const taskWebAppRequest = http.request(
-        "http://localhost:8080",
-        requestOptions
-      );
+      // const taskWebAppRequest = http.request(
+      //   "http://localhost:8080",
+      //   requestOptions
+      // );
 
-      request.on("data", (data) => {
-        taskWebAppRequest.write(data);
-      });
+      // request.on("data", (data) => {
+      //   taskWebAppRequest.write(data);
+      // });
 
-      taskWebAppRequest.on(
-        "response",
-        (taskWebAppResponse: IncomingMessage) => {
-          Object.entries(taskWebAppResponse.headers).forEach(([key, value]) => {
-            // valueがundefinedの場合は処理をスキップ
-            if (value === undefined) return;
-            // 配列かどうかで処理を分ける
-            const headerValue = Array.isArray(value) ? value.join(", ") : value;
-            response.setHeader(key, headerValue);
-          });
-          response.writeHead(taskWebAppResponse.statusCode || 500);
-          taskWebAppResponse.on("data", (data) => {
-            response.write(data);
-          });
-          taskWebAppResponse.on("end", () => {
-            response.end();
-          });
-        }
-      );
+      // taskWebAppRequest.on(
+      //   "response",
+      //   (taskWebAppResponse: IncomingMessage) => {
+      //     Object.entries(taskWebAppResponse.headers).forEach(([key, value]) => {
+      //       // valueがundefinedの場合は処理をスキップ
+      //       if (value === undefined) return;
+      //       // 配列かどうかで処理を分ける
+      //       const headerValue = Array.isArray(value) ? value.join(", ") : value;
+      //       response.setHeader(key, headerValue);
+      //     });
+      //     response.writeHead(taskWebAppResponse.statusCode || 500);
+      //     taskWebAppResponse.on("data", (data) => {
+      //       response.write(data);
+      //     });
+      //     taskWebAppResponse.on("end", () => {
+      //       response.end();
+      //     });
+      //   }
+      // );
 
-      request.on("end", () => {
-        taskWebAppRequest.end();
-      });
+      // request.on("end", () => {
+      //   taskWebAppRequest.end();
+      // });
+      // return;
+
+      response.writeHead(404);
+      response.end();
       return;
     }
 

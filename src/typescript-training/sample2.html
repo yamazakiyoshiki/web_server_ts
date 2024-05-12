@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>sample</title>
+  </head>
+  <body>
+    <input type="text" id="text-input" />
+    <button id="submit-button" disabled>submit</button>
+    <script>
+      const textInputElement = document.getElementById("text-input");
+      const submitButtonElement = document.getElementById("submit- button");
+      textInputElement.addEventListener("input", (event) => {
+        const inputValue = event.target.value;
+        submitButtonElement.disabled = inputValue.length === 0;
+      });
+    </script>
+  </body>
+</html>
